@@ -10,32 +10,35 @@
 
   <script src="./js/sessao.js"></script>
 
-  <link rel="stylesheet" href="./css/estilo.css" />
-  <link rel="icon" href="./assets/icon/favicon2.ico" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link rel="stylesheet" href="../public/css/cadastro.css" />
 </head>
 
 <body onload="listar()">
-  <header>
-    <nav>
-      <ul>
-        <li><a href="">Home</a></li>
-        <li><a href="">Filmes</a></li>
-        <li><a href="">Quiz</a></li>
-        <li><a href="">Perfil</a></li>
-        <li><a href="">Login</a></li>
-        <li><a href="">Cadastro</a></li>
-      </ul>
-    </nav>
-  </header>
+  <header class="header">
+        <nav>
+            <ul>
+                <li><img src="../public/assets/imgs/starwars-removebg-preview.png" alt=""></li>
 
-  <div class="login">
-    <div class="alerta_erro">
+                <li><a href="">Home</a></li>
+                <li><a href="">Filmes</a></li>
+                <li><a href="">Quiz</a></li>
+                <li><a href="">Perfil</a></li>
+                <li><a href="">Login</a></li>
+                <li><a href="">Cadastro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  <!-- <div class="login"> -->
+
+    <!-- <div class="alerta_erro">
       <div class="card_erro" id="cardErro">
         <span id="mensagem_erro"></span>
       </div>
-    </div>
+    </div> -->
+
     <div class="container">
+
       <div class="card card-cadastro">
         <h2>Bem-vindo!</h2>
         <div class="formulario">
@@ -61,14 +64,16 @@
           </div>
           <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>
-        <div id="div_aguardar" class="loading-div">
+
+
+        <!-- <div id="div_aguardar" class="loading-div">
           <img src="./assets/circle-loading.gif" id="loading-gif" />
-        </div>
+        </div> -->
 
         <div id="div_erros_login"></div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 
   <!--footer inicio-->
   <!-- <div class="footer">
@@ -112,7 +117,7 @@
         "(Mensagem de erro para todos os campos em branco)";
 
       finalizarAguardar();
-      return false;
+      return false; 
     } else {
       setInterval(sumirMensagem, 5000);
     }
@@ -145,6 +150,7 @@
         idEmpresaVincularServer: idEmpresaVincular
       }),
     })
+    
       .then(function (resposta) {
         console.log("resposta: ", resposta);
 
