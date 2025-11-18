@@ -10,7 +10,7 @@
 
     <script src="./js/sessao.js"></script>
 
-    <link rel="stylesheet" href="../public/css/cadastro.css">
+    <link rel="stylesheet" href="./css/cadastro.css">
 
 </head>
 
@@ -20,7 +20,7 @@
     <header class="header">
         <nav>
             <ul>
-                <li><img src="../public/assets/imgs/starwars-removebg-preview.png" alt=""></li>
+                <li><img src="./assets/imgs/starwars-removebg-preview.png" alt=""></li>
 
                 <li><a href="">Home</a></li>
                 <li><a href="">Filmes</a></li>
@@ -112,7 +112,7 @@
                     sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "index.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
