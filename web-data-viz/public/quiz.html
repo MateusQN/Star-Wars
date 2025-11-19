@@ -4,25 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo - Quiz</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Quiz de Personalidade - Star Wars</title>
+    <link rel="stylesheet" href="../DOCUMENTOS_DE_APOIO/exemplo_de_quiz/style.css">
 </head>
-
 
 <body onload="onloadEsconder()">
     <div id="pontuacaoEJogo">
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
         <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
+
             <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
-                <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
+                <span class="width-fit-content">Seu perfil está sendo construído...</span>
             </div>
-            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
-                <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                    <span id="spanPontuacaoFinal">***</span>
-                </span>
-                <span id="msgFinal" class="width-fit-content">***</span>
+
+            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8" style="display: none;">
+                <span id="pontuacaoFinal" class="width-fit-content text-bold">Pontuações Finais:</span>
+                <div id="pontuacoesDetalhadas" class="flex-colunar">
+                </div>
+                <hr>
+                <span id="msgFinal" class="width-fit-content text-bold">***</span>
             </div>
         </div>
 
@@ -63,7 +64,6 @@
             <div id="botoes" class="flex-colunar padding-8">
                 <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
                 <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
                 <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
             </div>
 
@@ -72,217 +72,277 @@
 </body>
 
 </html>
+
 <script>
     const listaDeQuestoes = [
-
         {
-            pergunta: "A Força avisa você de um ataque inimigo em 5 minutos. Como você reage?",
+            pergunta: "1. Cenário de Perigo Iminente: A Força avisa você de um ataque inimigo em 5 minutos. Como você reage?",
             alternativaA: "Começo a evacuar todos de forma discreta, priorizando a ordem e o sigilo.",
             alternativaB: "Corro para a área de defesa principal e preparo um contra-ataque imediato e total.",
             alternativaC: "Localizo o ponto de origem da ameaça e armo uma emboscada técnica e precisa.",
             alternativaD: "Tento encontrar a fonte do conflito para tentar uma negociação antes do ataque.",
-            
-        },
-
-        {
-            pergunta: "Quantas horas tem em um dia?",
-            alternativaA: "30 horas",
-            alternativaB: "38 horas",
-            alternativaC: "48 horas",
-            alternativaD: "24 horas",
-            alternativaCorreta: "alternativaD"
-        },
-
-        {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
+            pontuacoes: {
+                alternativaA: { Sabedoria: 2, Coragem: 0, Habilidade: 0, Compaixao: 0, Influencia: 1 },
+                alternativaB: { Sabedoria: -1, Coragem: 2, Habilidade: 0, Compaixao: 0, Influencia: 0 },
+                alternativaC: { Sabedoria: 0, Coragem: 0, Habilidade: 2, Compaixao: 0, Influencia: 0 },
+                alternativaD: { Sabedoria: 0, Coragem: 0, Habilidade: 0, Compaixao: 2, Influencia: 0 }
+            }
         },
         {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
+            pergunta: "2. A Queda de um Aliado: Um amigo que você ama profundamente sucumbe ao Lado Sombrio. Qual é a sua reação final?",
+            alternativaA: "Luto para conter o dano que ele pode causar, entendendo que ele está perdido.",
+            alternativaB: "Recuso-me a lutar, na esperança de que meu amor ou fé o traga de volta.",
+            alternativaC: "Vou atrás dele para enfrentá-lo em um duelo, pois sou o único que pode vencê-lo.",
+            alternativaD: "Tento usar minha influência sobre os outros para isolá-lo politicamente e reduzir seu poder.",
+            pontuacoes: {
+                alternativaA: { Sabedoria: 2, Coragem: 0, Habilidade: 0, Compaixao: -1, Influencia: 0 },
+                alternativaB: { Sabedoria: 0, Coragem: 1, Habilidade: 0, Compaixao: 2, Influencia: 0 },
+                alternativaC: { Sabedoria: -1, Coragem: 0, Habilidade: 2, Compaixao: 0, Influencia: 0 },
+                alternativaD: { Sabedoria: 0, Coragem: 0, Habilidade: 0, Compaixao: -1, Influencia: 2 }
+            }
         },
         {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
+            pergunta: "3. Uma Decisão Cruel de Liderança: Para salvar centenas de pessoas, você deve sacrificar uma pequena guarnição aliada. O que você faz?",
+            alternativaA: "É um sacrifício necessário para o bem maior. A galáxia é mais importante que poucos.",
+            alternativaB: "Tento negociar um acordo ou usar a situação para enganar o inimigo e salvar ambos os grupos.",
+            alternativaC: "Recuso-me a fazer essa escolha. Deve haver outra maneira. Procuro outra solução até o fim.",
+            alternativaD: "Tento criar um plano extremamente arriscado para salvar a guarnição e as centenas.",
+            pontuacoes: {
+                alternativaA: { Sabedoria: 2, Coragem: 0, Habilidade: 0, Compaixao: -2, Influencia: 1 },
+                alternativaB: { Sabedoria: 0, Coragem: 0, Habilidade: 0, Compaixao: 0, Influencia: 2 },
+                alternativaC: { Sabedoria: -1, Coragem: 0, Habilidade: 0, Compaixao: 2, Influencia: 0 },
+                alternativaD: { Sabedoria: 0, Coragem: 1, Habilidade: 2, Compaixao: 0, Influencia: 0 }
+            }
         },
         {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
+            pergunta: "4. A Resposta a uma Injustiça: Você vê um grupo de mercenários extorquindo uma família de fazendeiros inocentes. Qual é sua primeira ação?",
+            alternativaA: "Puxo meu blaster/sabre de luz e exijo que parem imediatamente.",
+            alternativaB: "Começo a conversar com os mercenários, convencendo-os a sair pacificamente (ou pelo menos por um preço).",
+            alternativaC: "Ofereço ajuda financeira à família ou tento encontrar um local seguro para eles fugirem.",
+            alternativaD: "Observo a situação para identificar o líder e o ponto fraco do grupo antes de agir.",
+            pontuacoes: {
+                alternativaA: { Sabedoria: 0, Coragem: 2, Habilidade: 0, Compaixao: 0, Influencia: 0 },
+                alternativaB: { Sabedoria: 1, Coragem: 0, Habilidade: 0, Compaixao: 0, Influencia: 2 },
+                alternativaC: { Sabedoria: 0, Coragem: -1, Habilidade: 0, Compaixao: 2, Influencia: 0 },
+                alternativaD: { Sabedoria: 1, Coragem: 0, Habilidade: 2, Compaixao: 0, Influencia: 0 }
+            }
         },
         {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
+            pergunta: "5. Qual é seu Foco no Treinamento? Se você fosse treinado por um Mestre Jedi ou um líder rebelde, onde estaria seu foco?",
+            alternativaA: "Treinamento físico e técnico: pilotar, lutar, consertar máquinas.",
+            alternativaB: "Estudo da história, filosofias e meditação para entender a Força/Universo.",
+            alternativaC: "Discurso, tática militar, diplomacia e liderança de tropas.",
+            alternativaD: "Abertura à Força para sentir o sofrimento e a bondade dos outros, agindo com empatia.",
+            pontuacoes: {
+                alternativaA: { Sabedoria: 0, Coragem: 0, Habilidade: 2, Compaixao: 0, Influencia: -1 },
+                alternativaB: { Sabedoria: 2, Coragem: -1, Habilidade: 0, Compaixao: 0, Influencia: 0 },
+                alternativaC: { Sabedoria: 1, Coragem: 0, Habilidade: 0, Compaixao: 0, Influencia: 2 },
+                alternativaD: { Sabedoria: 0, Coragem: 0, Habilidade: 0, Compaixao: 2, Influencia: 0 }
+            }
         },
         {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
+            pergunta: "6. Um Desafio Pessoal de Longo Prazo: Você precisa desenvolver uma habilidade complexa que leva anos para dominar. Como você aborda isso?",
+            alternativaA: "Com paciência e disciplina rigorosa, seguindo um cronograma.",
+            alternativaB: "Com prática constante e intensa, sempre testando meus limites em situações reais.",
+            alternativaC: "Dissecando a técnica em seus componentes básicos e buscando atalhos/hacks eficientes.",
+            alternativaD: "Buscando a mentoria de um mestre renomado e me tornando seu protegido.",
+            pontuacoes: {
+                alternativaA: { Sabedoria: 2, Coragem: 0, Habilidade: 0, Compaixao: 0, Influencia: 0 },
+                alternativaB: { Sabedoria: -1, Coragem: 2, Habilidade: 0, Compaixao: 0, Influencia: 0 },
+                alternativaC: { Sabedoria: 0, Coragem: 0, Habilidade: 2, Compaixao: 0, Influencia: 0 },
+                alternativaD: { Sabedoria: 0, Coragem: 0, Habilidade: 0, Compaixao: 0, Influencia: 2 }
+            }
         },
         {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
+            pergunta: "7. Sua Maior Força no Combate: Num duelo difícil, o que te dá a vantagem final?",
+            alternativaA: "Minha velocidade, precisão e controle perfeito dos meus movimentos.",
+            alternativaB: "O tempo que dediquei à preparação, sabendo o que meu oponente fará.",
+            alternativaC: "A ligação emocional (amor/raiva) que me impulsiona, transformando-a em poder bruto.",
+            alternativaD: "A capacidade de desestabilizar mentalmente o oponente com palavras ou provocações.",
+            pontuacoes: {
+                alternativaA: { Sabedoria: 0, Coragem: 1, Habilidade: 2, Compaixao: 0, Influencia: 0 },
+                alternativaB: { Sabedoria: 2, Coragem: 0, Habilidade: 0, Compaixao: 0, Influencia: 0 },
+                alternativaC: { Sabedoria: 0, Coragem: 2, Habilidade: 0, Compaixao: 1, Influencia: 0 },
+                alternativaD: { Sabedoria: 0, Coragem: 0, Habilidade: 0, Compaixao: 0, Influencia: 2 }
+            }
         },
         {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
+            pergunta: "8. O Que Você Valoriza Mais na Ordem? Qual é o pilar mais importante de uma organização (Jedi, Sith, Rebeldes, Primeira Ordem)?",
+            alternativaA: "A sabedoria e as regras que evitam o Coragem.",
+            alternativaB: "A determinação e a disposição para lutar pelo que é certo.",
+            alternativaC: "O foco na vida e no bem-estar de todos os seres vivos.",
+            alternativaD: "A capacidade de impor sua vontade e expandir o poder.",
+            pontuacoes: {
+                alternativaA: { Sabedoria: 2, Coragem: 0, Habilidade: 0, Compaixao: 0, Influencia: 0 },
+                alternativaB: { Sabedoria: 0, Coragem: 2, Habilidade: 0, Compaixao: 0, Influencia: 0 },
+                alternativaC: { Sabedoria: 0, Coragem: 0, Habilidade: 0, Compaixao: 2, Influencia: 0 },
+                alternativaD: { Sabedoria: 0, Coragem: 0, Habilidade: 0, Compaixao: -1, Influencia: 2 }
+            }
+        },
+        {
+            pergunta: "9. Reação ao Fracasso: Você falhou em uma missão importante e isso causou dor. O que você sente principalmente?",
+            alternativaA: "Aceitação: o fracasso é um professor e parte da vida.",
+            alternativaB: "Raiva e frustração: vou treinar mais para que isso nunca mais aconteça.",
+            alternativaC: "Culpa e tristeza profunda pelas pessoas que foram prejudicadas.",
+            alternativaD: "Uma análise imediata do que tecnicamente deu errado para corrigir a falha.",
+            pontuacoes: {
+                alternativaA: { Sabedoria: 2, Coragem: -1, Habilidade: 0, Compaixao: 0, Influencia: 0 },
+                alternativaB: { Sabedoria: -1, Coragem: 2, Habilidade: 0, Compaixao: 0, Influencia: 0 },
+                alternativaC: { Sabedoria: 0, Coragem: 0, Habilidade: 0, Compaixao: 2, Influencia: 0 },
+                alternativaD: { Sabedoria: 0, Coragem: 0, Habilidade: 2, Compaixao: 0, Influencia: 0 }
+            }
+        },
+        {
+            pergunta: "10. O Que é Liberdade para Você? A verdadeira liberdade na galáxia é...",
+            alternativaA: "O conhecimento para entender o universo e a capacidade de ser livre da emoção.",
+            alternativaB: "A capacidade de ir para onde quiser e fazer o que for preciso para sobreviver.",
+            alternativaC: "Um lugar onde todos possam viver em paz, livres do medo e da opressão.",
+            alternativaD: "O poder de ditar suas próprias regras e não se curvar a ninguém.",
+            pontuacoes: {
+                alternativaA: { Sabedoria: 2, Coragem: 0, Habilidade: 0, Compaixao: 0, Influencia: 0 },
+                alternativaB: { Sabedoria: 0, Coragem: 2, Habilidade: 1, Compaixao: 0, Influencia: 0 },
+                alternativaC: { Sabedoria: 0, Coragem: 0, Habilidade: 0, Compaixao: 2, Influencia: 1 },
+                alternativaD: { Sabedoria: 0, Coragem: 0, Habilidade: 1, Compaixao: 0, Influencia: 2 }
+            }
         }
-       
+    ];
 
-    ]
 
-    // variáveis globais    
-    let numeroDaQuestaoAtual = 0
+    let numeroDaQuestaoAtual = 0;
+    let quantidadeDeQuestoes = listaDeQuestoes.length;
+    let hasNextQuestion = true;
 
-    // Atributos
-    let sabedoria = 0
-    let coragem = 0
-    let compaixao = 0
-    let habilidade = 0
-    let inflencia = 0
 
-    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+    let pontuacaoSabedoria = 0;
+    let pontuacaoCaos = 0;
+    let pontuacaoHabilidade = 0;
+    let pontuacaoPiedade = 0;
+    let pontuacaoInfluencia = 0;
 
     function onloadEsconder() {
-        document.getElementById('pontuacao').style.display = "none"
-        document.getElementById('jogo').style.display = "none"
+        document.getElementById('pontuacao').style.display = "none";
+        document.getElementById('jogo').style.display = "none";
+        // Esconder pontuação final ao carregar
+        document.getElementById('pontuacaoFinalJogo').style.display = "none";
     }
 
     function iniciarQuiz() {
-        document.getElementById('pontuacao').style.display = "flex"
-        document.getElementById('jogo').style.display = "flex"
-        document.getElementById('btnIniciarQuiz').style.display = "none"
+        document.getElementById('pontuacao').style.display = "flex";
+        document.getElementById('jogo').style.display = "flex";
+        document.getElementById('btnIniciarQuiz').style.display = "none";
+        document.getElementById('pontuacaoDuranteJogo').style.display = "flex"; // Garante que a barra de status inicial está visível
 
-        document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
+        document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes;
+        preencherHTMLcomQuestaoAtual(0);
 
-        preencherHTMLcomQuestaoAtual(0)
-
-        btnSubmeter.disabled = false
-        btnProx.disabled = true
-        // btnConcluir.disabled = true
-        btnTentarNovamente.disabled = true
+        btnSubmeter.disabled = false;
+        btnProx.disabled = true;
+        btnTentarNovamente.disabled = true;
     }
 
     function preencherHTMLcomQuestaoAtual(index) {
-        habilitarAlternativas(true)
-        const questaoAtual = listaDeQuestoes[index]
-        numeroDaQuestaoAtual = index
-        console.log("questaoAtual")
-        console.log(questaoAtual)
-        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
-        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
-        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
-        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
-        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
-        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+        habilitarAlternativas(true);
+        const questaoAtual = listaDeQuestoes[index];
+
+
+        if (questaoAtual) {
+            numeroDaQuestaoAtual = index;
+            document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1; // ajustando porque o index começa em 0
+            document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+            document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+            document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+            document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+            document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+        } else {
+            // Se não houver mais questões, finaliza o jogo imediatamente.
+            hasNextQuestion = false;
+            finalizarJogo();
+        }
     }
 
     function submeter() {
-        const options = document.getElementsByName("option"); // recupera alternativas no html
+        const options = document.getElementsByName("option");
+        let hasChecked = false;
 
-        let hasChecked = false
         for (let i = 0; i < options.length; i++) {
             if (options[i].checked) {
-                hasChecked = true
-                break
+                hasChecked = true;
+                break;
             }
         }
 
         if (!hasChecked) {
-            alert("Não há alternativas escolhidas. Escolha uma opção.")
+            alert("Não há alternativas escolhidas. Escolha uma opção.");
         } else {
-            btnSubmeter.disabled = true
-            btnProx.disabled = false
+            checarResposta();
+            btnSubmeter.disabled = true;
+            habilitarAlternativas(false);
 
-            habilitarAlternativas(false)
-
-            checarResposta()
+            // Verifica se esta é a última questão.
+            if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
+                btnProx.disabled = false; // Se houver próxima, permite avançar
+            } else {
+                finalizarJogo(); // Se for a última, finaliza
+            }
         }
     }
 
     function habilitarAlternativas(trueOrFalse) {
-        let opcaoEscolhida = trueOrFalse ? false : true
-
-        primeiraOpcao.disabled = opcaoEscolhida
-        segundaOpcao.disabled = opcaoEscolhida
-        terceiraOpcao.disabled = opcaoEscolhida
-        quartaOpcao.disabled = opcaoEscolhida
-
+        const isEnable = !trueOrFalse; 
+        primeiraOpcao.disabled = isEnable;
+        segundaOpcao.disabled = isEnable;
+        terceiraOpcao.disabled = isEnable;
+        quartaOpcao.disabled = isEnable;
     }
 
     function avancar() {
-        btnProx.disabled = true
-        btnSubmeter.disabled = false
+        btnProx.disabled = true;
+        btnSubmeter.disabled = false;
 
-        desmarcarRadioButtons()
+        desmarcarRadioButtons();
+        limparCoresBackgroundOpcoes();
 
-        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
-            alert("Atenção... a próxima é a ultima questão!")
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-        } else {
-            finalizarJogo()
+        // Tenta avançar para a próxima questão
+        preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual);
+
+        // Alerta opcional para a última questão, se necessário
+        if (numeroDaQuestaoAtual === quantidadeDeQuestoes - 1) {
+            console.log("Atenção... a próxima é a ultima questão!");
         }
-        limparCoresBackgroundOpcoes()
-    }
-
-    function tentarNovamente() {
-        // atualiza a página
-        window.location.reload()
     }
 
     function checarResposta() {
-        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
+    const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual];
+    const options = document.getElementsByName("option");
+    let alternativaEscolhida = null;
 
-        const options = document.getElementsByName("option"); // recupera alternativas no html
+    
+    options.forEach((option) => {
+        if (option.checked === true) {
+            alternativaEscolhida = option.value;
+            const labelId = option.labels[0].id;
+            document.getElementById(labelId).classList.add("text-new-gray-with-bg"); 
+        }
+    });
 
-        options.forEach((option) => {
-            if (option.value === respostaQuestaoAtual) {
-                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
-                alternativaCorreta = option.labels[0].id
-            }
-        })
+    if (alternativaEscolhida) {
+        const pontuacoesDaResposta = questaoAtual.pontuacoes[alternativaEscolhida];
 
-       
+        pontuacaoSabedoria += pontuacoesDaResposta.Sabedoria || 0;
+        pontuacaoCaos += pontuacoesDaResposta.Caos || 0;
+        pontuacaoHabilidade += pontuacoesDaResposta.Habilidade || 0;
+        pontuacaoPiedade += pontuacoesDaResposta.Piedade || 0;
+        pontuacaoInfluencia += pontuacoesDaResposta.Influencia || 0;
+        
+        numeroDaQuestaoAtual++;
     }
+}
 
     function limparCoresBackgroundOpcoes() {
         const options = document.getElementsByName("option");
         options.forEach((option) => {
-            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
-            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
-        })
+            document.getElementById(option.labels[0].id).classList.remove("text-new-gray-with-bg");
+        });
     }
 
     function desmarcarRadioButtons() {
@@ -291,38 +351,11 @@
             options[i].checked = false;
         }
     }
+   
 
-    function finalizarJogo() {
-        let textoParaMensagemFinal = null
-        let classComCoresParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
-
-        if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Parece que você não estudou..."
-            classComCoresParaMensagemFinal = "text-danger-with-bg"
-        }
-        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
-            classComCoresParaMensagemFinal = "text-warning-with-bg"
-        }
-        else if (porcentagemFinalDeAcertos >= 0.9) {
-            textoParaMensagemFinal = "Uau, parabéns!"
-            classComCoresParaMensagemFinal = "text-success-with-bg"
-        }
-
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
-
-
-        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
-        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
-
-        document.getElementById('jogo').classList.add("text-new-gray") 
-
-        btnProx.disabled = true
-        btnSubmeter.disabled = true
-        // btnConcluir.disabled = true
-        btnTentarNovamente.disabled = false
-
+    function tentarNovamente() {
+        // atualiza a página
+        window.location.reload();
     }
+
 </script>
