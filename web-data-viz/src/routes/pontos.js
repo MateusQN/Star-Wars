@@ -1,7 +1,8 @@
 var express = require("express");
 var router = express.Router();
 
-var pontosController = require("./controllers/pontosController");
+var pontosController = require("../controllers/pontosController");
+
 
 
 router.post("/cadastrar", function (req, res) {
