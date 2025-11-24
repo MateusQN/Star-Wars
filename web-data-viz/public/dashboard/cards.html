@@ -9,8 +9,8 @@
     <title>AquaTech | Tempo Real</title>
 
 
-    <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
+    <link rel="stylesheet" href="../css/dasboard1.css">
+    <!-- <link rel="stylesheet" href="./../css/estilo.css" /> -->
 
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
@@ -20,99 +20,156 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()">
+<body onload="obterDados()">
 
-    <div class="janela">
-
-        <div class="header-left dash-header">
-
-            <h1>AquaTech</h1>
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
-
-            <div class="btn-nav">
-                <h3>Aquários</h3>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
+    <header>
+        <div id="header-left">
+            <img src="../assets/img/dashboard/logo.png" alt="Logo do IceBlood">
+            <h1>IceBlood</h1>
+            <nav>
+                <ul>
+                    <li><a href="./EXEMPLO_QUIZZ.html" class="active">Patente</a></li>
+                    <li><a href="./dashboard/cards.html">Quiz</a></li>
+                    <li><a href="./index.html">Sair</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <div class="dash">
-            <div id="alerta">
-            </div>
-            <div class="area-parametros-alerta">
-                <p class="titulo-legenda">
-                    Legenda - Parâmetros para Alertas
-                </p>
-                <div class="parametros-alerta">
-                    <div class="item-regua perigo-frio">
-                        <p>Perigo</p>
-                        <p>&lt;=5°C</p>
-                    </div>
-                    <div class="item-regua alerta-frio">
-                        <p>Alerta</p>
-                        <p>&lt;=10°C</p>
-                    </div>
-                    <div class="item-regua ideal">
-                        <p>Ideal</p>
-                        <p>20°C</p>
-                    </div>
-                    <div class="item-regua alerta-quente">
-                        <p>Alerta</p>
-                        <p>&gt;=22°C</p>
-                    </div>
-                    <div class="item-regua perigo-quente">
-                        <p>Perigo</p>
-                        <p>&gt;=23°C</p>
-                    </div>
+    <main>
+        <section class="container-kpi">
+            <h1>Você tem a personalidade de:</h1>
+
+            <div class="cards-kpi">
+                <div class="card">
+                    <h3>Sabedoria</h3>
+                </div>
+
+                <div class="card">
+                    <h3>Coragem</h3>
+                </div>
+
+                <div class="card">
+                    <h3>Habilidade</h3>
+                </div>
+
+                <div class="card">
+                    <h3>Compaixão</h3>
+                </div>
+
+                <div class="card">
+                    <h3>Influência</h3>
                 </div>
             </div>
+        </section>
 
-            <div class="cards" id="cardAquarios">
+        <section class="resultado">
+            <div class="personagem">
+                <h3>Anakin Skywalker</h3>
+
+                <img src="../assets/imgs/anakin.jpg" alt="">
 
             </div>
 
+            <div class="grafico"><canvas id="myChart"></canvas></div>
+        </section>
+
+        <div class="descricao">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione animi inventore recusandae, vero nemo
+                odit sit error illum debitis. Corporis sed nulla eaque magni natus itaque aut nemo quia unde?</p>
         </div>
-
-    </div>
-
+    </main>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
 <script>
 
-    function exibirAquarios() {
-        JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
-            document.getElementById("cardAquarios").innerHTML += `
-                    <div class="card-aquario">
-                        <div class="title-aquario">
-                            <h1>${item.descricao}</h1>
-                        </div>
-                        <div class="desc-aquario">
-                        <div class="temperatura">
-                            <p id="temp_aquario_${item.id}">-°C</p>
-                        </div>
-                        <div class="cor-alerta" id="card_${item.id}"></div>
-                    </div>
-                    </div>
-                    `
+    function obterDados() {
+        fetch('/pontos/listar')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                plotarGraficoRadar(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+
+        // Chamando a função para plotar o gráfico de linha com os dados
+    }
+
+    // Função para plotar o gráfico de linha
+    function plotarGraficoRadar(data) {
+
+        // Separando os rótulos (labels) e os dados dos votos
+
+        const atributos = ['Sabedoria', 'Coragem', 'Habilidade', 'Conhecimento', 'Conexão'];
+        var pontos = [];
+        console.log(pontos);
+
+
+        // Preenchendo os arrays com os dados
+        for (var i = 0; i < data.length; i++) {
+            pontos.push(data[i].pontos_sabedoria);
+            pontos.push(data[i].pontos_coragem);
+            pontos.push(data[i].pontos_habilidade);
+            pontos.push(data[i].pontos_conhecimento);
+            pontos.push(data[i].pontos_conexao);
+        }
+
+
+
+        // Capturando o elemento canvas pelo id 
+        var ctx = document.getElementById('myChart').getContext('2d');
+        // Criando o gráfico de linha usando o Chart.js
+        var myChart = new Chart(ctx, {
+            type: 'radar', // Tipo de gráfico: linha
+            data: { // Dados para o gráfico
+                labels: atributos, // Rótulos no eixo X
+                datasets: [{
+                    label: 'Atributos', // Nome do conjunto de dados
+                    data: pontos, // Dados dos votos
+                    backgroundColor: [
+                        '#000', // Cor de fundo das linhas
+                    ],
+                    borderColor: [
+                        '#E3A600', // Cor da borda das linhas
+                    ],
+                    borderWidth: 2, // Largura da borda das linhas
+                    pointBackGroundColor: '#E3A600',
+                    pointBorderColor: '#E3A600'
+
+                }]
+            }, angleLines: {
+                display: true, // Garante que as linhas estejam visíveis
+                color: '#E3A600' // Cor: preto semitransparente
+            },
+            scales: {
+                r: {
+                    angleLines: { display: true },
+                    suggestedMin: 0,
+                    suggestedMax: 10 // Ajuste para a pontuação máxima
+                }
+            },// 2. LINHAS DA GRADE (CÍRCULOS CONCÊNTRICOS)
+            grid: {
+                color: 'rgba(180, 180, 180, 0.7)' // Cor: cinza mais claro
+            },
+
+            // 3. RÓTULOS DOS PONTOS (Nomes dos eixos)
+            pointLabels: {
+                color: 'rgb(50, 50, 50)' // Cor do texto dos rótulos
+            },
+
+            // 4. RÓTULOS DE VALORES (Ticks)
+            ticks: {
+                color: 'rgb(100, 100, 100)', // Cor do texto dos valores (0, 20, 40...)
+                // 'backdropColor' muda a cor do fundo do valor
+                backdropColor: 'rgba(255, 255, 255, 0.8)'
+            }
         });
+
     }
 
 </script>

@@ -10,6 +10,22 @@
 
 
 <body onload="onloadEsconder()">
+
+    <header>
+    <div id="header-left">
+      <img src="../assets/img/dashboard/logo.png" alt="Logo do IceBlood">
+      <h1>IceBlood</h1>
+      <nav>
+        <ul>
+          <li><a href="./EXEMPLO_QUIZZ.html" class="active">Patente</a></li>
+          <li><a href="./dashboard/cards.html">Quiz</a></li>
+          <li><a href="./index.html">Sair</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
     <div id="pontuacaoEJogo">
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
@@ -75,32 +91,87 @@
 <script>
     const listaDeQuestoes = [
 
-        {
-            pergunta: "Qual mês tem 30 dias?",
-            alternativaA: "Janeiro",
-            alternativaB: "Dezembro",
-            alternativaC: "Junho",
-            alternativaD: "Agosto",
-            alternativaCorreta: "alternativaC"
-        },
 
-        {
-            pergunta: "Quantas horas tem em um dia?",
-            alternativaA: "30 horas",
-            alternativaB: "38 horas",
-            alternativaC: "48 horas",
-            alternativaD: "24 horas",
-            alternativaCorreta: "alternativaD"
-        },
-
-        {
-            pergunta: "Qual destes números é ímpar?",
-            alternativaA: "Dez",
-            alternativaB: "Doze",
-            alternativaC: "Oito",
-            alternativaD: "Onze",
-            alternativaCorreta: "alternativaD"
-        }
+    {
+        "pergunta": "Qual é o primeiro passo para o Lado Negro, conforme o Código Jedi?",
+        "alternativaA": "Ataque",
+        "alternativaB": "Ódio",
+        "alternativaC": "Medo",
+        "alternativaD": "Raiva",
+        "alternativaCorreta": "alternativaC"
+    },
+    {
+        "pergunta": "Qual é a classificação de um jovem sensitivo à Força que está em treinamento sob a tutela de um Cavaleiro ou Mestre?",
+        "alternativaA": "Cavaleiro Jedi",
+        "alternativaB": "Iniciado Jedi",
+        "alternativaC": "Padawan",
+        "alternativaD": "Grão-Mestre",
+        "alternativaCorreta": "alternativaC"
+    },
+    {
+        "pergunta": "Qual é o principal critério para um Cavaleiro Jedi ser elevado ao posto de Mestre Jedi?",
+        "alternativaA": "Derrotar um Lorde Sith",
+        "alternativaB": "Construir seu próprio Templo Jedi",
+        "alternativaC": "Treinar com sucesso um Padawan até se tornar Cavaleiro",
+        "alternativaD": "Dominar todos os Sete Formulários de Combate",
+        "alternativaCorreta": "alternativaC"
+    },
+    {
+        "pergunta": "Onde estava localizado o principal Templo Jedi e o Alto Conselho Jedi durante a era da República Galáctica?",
+        "alternativaA": "Yavin IV",
+        "alternativaB": "Coruscant",
+        "alternativaC": "Alderaan",
+        "alternativaD": "Dagobah",
+        "alternativaCorreta": "alternativaB"
+    },
+    {
+        "pergunta": "Qual das seguintes emoções é explicitamente desencorajada pelo Código Jedi por levar ao sofrimento e ao Lado Negro?",
+        "alternativaA": "Serenidade",
+        "alternativaB": "Paixão",
+        "alternativaC": "Calma",
+        "alternativaD": "Conhecimento",
+        "alternativaCorreta": "alternativaB"
+    },
+    {
+        "pergunta": "Qual é o termo para o ritual que um Padawan deve passar para se tornar um Cavaleiro Jedi, testando suas habilidades e caráter?",
+        "alternativaA": "Missão de Serviço",
+        "alternativaB": "Jornada de Iluminação",
+        "alternativaC": "Testes Jedi",
+        "alternativaD": "Ascensão de Mestre",
+        "alternativaCorreta": "alternativaC"
+    },
+    {
+        "pergunta": "A Força, conforme descrita por Obi-Wan Kenobi, é um campo de energia criado por...?",
+        "alternativaA": "O Templo Jedi e os Holocrons",
+        "alternativaB": "A galáxia e seus sóis",
+        "alternativaC": "Todos os seres vivos",
+        "alternativaD": "Apenas os Lordes Sith e os Jedi",
+        "alternativaCorreta": "alternativaC"
+    },
+    {
+        "pergunta": "Qual arma é considerada a ferramenta mais importante de um Jedi e um reflexo de sua conexão com a Força?",
+        "alternativaA": "Blaster de Precisão",
+        "alternativaB": "Sabre de Luz",
+        "alternativaC": "Bacamarte Pesado",
+        "alternativaD": "Vibrolâmina",
+        "alternativaCorreta": "alternativaB"
+    },
+    {
+        "pergunta": "Qual é a função do Cristal Kyber dentro de um sabre de luz Jedi?",
+        "alternativaA": "Apenas dar cor à lâmina",
+        "alternativaB": "Controlar a temperatura do punho",
+        "alternativaC": "Canalizar a energia da Força para criar a lâmina de plasma",
+        "alternativaD": "Servir como uma fonte de energia primária",
+        "alternativaCorreta": "alternativaC"
+    },
+    {
+        "pergunta": "Qual é a mais alta classificação dentro de toda a Ordem Jedi, reservada para o líder da organização?",
+        "alternativaA": "Mestre Jedi",
+        "alternativaB": "Alto Cavaleiro",
+        "alternativaC": "Grão-Mestre",
+        "alternativaD": "Guardião da Força",
+        "alternativaCorreta": "alternativaC"
+    }
 
     ]
 
@@ -111,6 +182,8 @@
     let certas = 0
     let erradas = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
+
+    let idUsuario = sessionStorage.ID_USUARIO
     // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function onloadEsconder() {
@@ -284,6 +357,44 @@
         btnSubmeter.disabled = true
         // btnConcluir.disabled = true
         btnTentarNovamente.disabled = false
+
+
+        fetch("/pontos/cadastrar", {    
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            pontuacaoFinalServer: pontuacaoFinal,
+            idUsuarioServer: idUsuario
+        }),
+    })
+    
+    .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        
+      });
+    
 
     }
 </script>

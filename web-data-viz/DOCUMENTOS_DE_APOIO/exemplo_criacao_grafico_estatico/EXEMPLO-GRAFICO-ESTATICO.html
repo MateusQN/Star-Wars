@@ -83,12 +83,12 @@ function plotarGraficoLinha(dados){
     votos.push(dados[i].votos);
     jogadores.push(dados[i].jogador);
   }
-
+  
   // Capturando o elemento canvas pelo id 
   var ctx = document.getElementById('linha').getContext('2d');
   // Criando o gráfico de linha usando o Chart.js
   var myChart = new Chart(ctx, {
-      type: 'line', // Tipo de gráfico: linha
+      type: 'radar', // Tipo de gráfico: linha
       data: { // Dados para o gráfico
           labels: jogadores, // Rótulos no eixo X
           datasets: [{ 

@@ -1,22 +1,26 @@
 var database = require("../database/config")
 
 
-function cadastrar(fkUsuario, pontosSabedoria, pontosCoragem,pontosHabilidade, pontosCompaixao, pontosInfluencia) {
+function cadastrar(fkUsuario, pontuacaoFinal) {
     var instrucao = `
-        INSERT INTO pontuacao (fkUsuario, fkQuiz, sabedoria, coragem, habilidade, compaixao, influencia) VALUES ('${fkUsuario}','1' ,'${pontosSabedoria}', '${pontosCoragem}', '${pontosHabilidade}','${pontosCompaixao}', '${pontosInfluencia}');
+        INSERT INTO pontuacao (fkUsuario, fkQuiz, pontuacaoFinal) VALUES ('${fkUsuario}','1' ,'${pontuacaoFinal}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
 
-     console.log(pontosSabedoria);
-     console.log(pontosCoragem);
-     console.log(pontosHabilidade);
-     console.log(pontosCompaixao);
-     console.log(pontosInfluencia);
+
     return database.executar(instrucao);
-    
+}
+
+function listar() {
+    var instrucao = `
+        SELECT * FROM mostrarPatente;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
 }
 
 module.exports = {
-    cadastrar
+    cadastrar,
+    listar
 };
 
