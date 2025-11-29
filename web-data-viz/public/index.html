@@ -14,9 +14,8 @@
             <ul>
                 <li><img src="./assets/imgs/starwars-removebg-preview.png" alt=""></li>
 
-                <li><a href="">Home</a></li>
-                <li><a href="">Filmes</a></li>
-                <!-- <li><a href="EXEMPLO_QUIZZ.html">Quiz</a></li> -->
+                <li><a href="index.html">Home</a></li>
+                <li><a href="filmes.html">Filmes</a></li>
                 <li><a href="login.html">Login</a></li>
                 <li><a href="cadastro.html">Cadastro</a></li>
             </ul>
@@ -26,9 +25,7 @@
     <main>
 
         <section class="video">
-            <video controls muted autoplay loop>
-                <source src="./assets/imgs/snaptik_7542849611636034838_v2.mp4">
-            </video>
+           <img src="./assets/imgs/inicio.png" alt="">
         </section>
 
         <section class="container1">
@@ -55,9 +52,9 @@
 
             <p>Assistir Star Wars é testemunhar um divisor de águas na história do cinema, cujo impacto visual e técnico redefiniu o gênero de ficção científica. George Lucas não apenas imaginou um universo, mas criou a Industrial Light & Magic (ILM) para inventar as ferramentas necessárias para realizá-lo. A cinematografia da saga é icônica porque conseguiu combinar a grandiosidade da fantasia épica com uma inovação técnica sem precedentes, como os sistemas de controle de movimento e os efeitos ópticos que davam vida às batalhas espaciais. Além disso, a estética é propositalmente "usada" e suja, apresentando naves e droides que parecem ter sofrido anos de uso no espaço. Isso confere um realismo tátil ao futuro, fazendo o universo parecer habitado e funcional. Complementado pela trilha sonora inconfundível de John Williams, a experiência cinematográfica de Star Wars é um banquete sensorial que moldou a linguagem dos blockbusters contemporâneos. </p>
         </div>
+        
+        <div class="filho-container2" id="div_carrossel">
 
-        <div>
-            <img src="" alt="">
         </div>
 
         <div class="filho-container2">
@@ -71,6 +68,8 @@
 
             <p>O elemento mais filosófico e intrigante da saga é a Força, um campo de energia que conecta todas as coisas e serve como uma poderosa metáfora para o conflito ético universal. A Força é apresentada em uma dualidade constante: o Lado Luminoso, associado à paz, ao conhecimento e ao desapego (os princípios Jedi), e o Lado Sombrio, movido pelo medo, pela raiva e pelo apego (os princípios Sith). Essa luta não é apenas externa, mas principalmente interna nos personagens, tornando a saga uma profunda meditação sobre o Bem e o Mal e a necessidade de Equilíbrio. As jornadas de personagens como Anakin e Luke Skywalker exploram o tema do Livre Arbítrio, questionando se o destino é predeterminado ou se somos moldados pelas escolhas morais que fazemos. Em essência, Star Wars utiliza a fantasia espacial para discutir a natureza humana e as tentações do poder e do egoísmo.</p>
         </div>
+
+        <img src="./assets/imgs/diversidade.png" alt="">
 
 
     </section>
@@ -103,5 +102,28 @@
         <p>by Mateus 2025</p>
     </footer>
 </body>
+<script>
+
+var img_carrossel = ['./assets/imgs/cinematografia 1.jpg','./assets/imgs/cinematografia2.jpg', './assets/imgs/cinematografia3.jpg'];
+var index = 0;
+
+
+function carrossel() {
+  img = img_carrossel[index];
+  
+  div_carrossel.innerHTML = `<img src="${img}" alt="">`
+
+  index++
+  
+  if (index >= img_carrossel.length) {
+      index = 0;
+    }
+}
+
+carrossel();
+
+var intervalo = setInterval(carrossel, 4000);
+
+</script>
 
 </html>

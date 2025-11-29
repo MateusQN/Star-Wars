@@ -65,7 +65,7 @@ body{
     width: 100%;
 }
 
-.video video{
+.video img{
     width: 100%;
 }
 
@@ -119,9 +119,17 @@ body{
     font-weight: 500;
 }
 
+.filho-container2 img{
+    padding: 1% 10%;
+    width: 70vw;
+    height: 70vh;
+}
+
 .filho-container2{
     margin-bottom: 5%;
 }
+
+
 
 .desenvolvedor{
     margin: 5%;

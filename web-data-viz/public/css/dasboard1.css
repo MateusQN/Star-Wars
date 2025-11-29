@@ -1,6 +1,6 @@
 :root{
-    --cor-primaria: #000;
     --cor-secundaria: #E3A600;
+    --cor-primaria: #2b2b2b;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -30,6 +30,7 @@ header{
     top: 0;
     flex-shrink: 0;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    align-items: center;
 }
 
 header #header-left{
@@ -40,6 +41,47 @@ header #header-left{
     flex-direction: column;
     padding: var(--espacamento-md);
     padding-top: var(--espacamento-lg);
+    
+}
+
+header nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30%;
+    height: 50%;
+    width: 100%;
+}
+
+header nav ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 40%
+}
+
+header nav ul li{
+    margin: 70% 0;
+    list-style: none;
+    width: 20%;
+    
+}
+
+header nav ul li a{
+    text-decoration: none;
+    background-color: var(--cor-primaria);
+    border: solid 2px var(--cor-secundaria);
+    color: var(--cor-secundaria);
+    padding: 70%;
+    width: 40%;
+    font-size: 1.5rem;
+}
+
+header img{
+    width: 85%;
+    margin-top: 10%;
+    padding: 15%;
 }
 
 main{
@@ -67,10 +109,11 @@ section h1{
     width: 15%;
     height: 60%;
     background-color: var(--cor-primaria);
-    color: #E3A600;
+    color: var(--cor-secundaria);
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     border: solid 4px var(--cor-secundaria);
 
 }
@@ -84,7 +127,7 @@ section h1{
 
 .personagem{
     background-color: var(--cor-primaria);
-    width: 20vw;
+    width: 25vw;
     height: 55vh;
     border: solid 4px var(--cor-secundaria);
     color: var(--cor-secundaria);
@@ -92,12 +135,15 @@ section h1{
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 5%;
+    padding: 3%;
+
+    
 }
 
 .personagem img{
-    width: 15vw;
+    width: 25vw;
     height: 45vh;
+    border: solid 4px var(--cor-secundaria);
 
 }
 
@@ -110,10 +156,12 @@ section h1{
 
 }
 
-.descricao{
+.descricao_patente{
     padding: 5%;
     width: 90%;
     height: 10vh;
     background-color: var(--cor-primaria);
     border: solid 4px var(--cor-secundaria);
+    color: var(--cor-secundaria);
+    font-size: 1rem;
 }

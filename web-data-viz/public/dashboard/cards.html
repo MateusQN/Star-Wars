@@ -24,13 +24,12 @@
 
     <header>
         <div id="header-left">
-            <img src="../assets/img/dashboard/logo.png" alt="Logo do IceBlood">
-            <h1>IceBlood</h1>
+            <img src="../assets/imgs/starwars-removebg-preview.png" alt="Logo do IceBlood">
             <nav>
                 <ul>
-                    <li><a href="./EXEMPLO_QUIZZ.html" class="active">Patente</a></li>
-                    <li><a href="./dashboard/cards.html">Quiz</a></li>
-                    <li><a href="./index.html">Sair</a></li>
+                    <li><a href="./dashboard/cards.html" class="active">Patente</a></li>
+                    <li><a href="../EXEMPLO_QUIZZ.html">Quiz</a></li>
+                    <li><a href="./../index.html">Sair</a></li>
                 </ul>
             </nav>
         </div>
@@ -38,47 +37,47 @@
 
     <main>
         <section class="container-kpi">
-            <h1>Você tem a personalidade de:</h1>
+            <h1 id="titulo_nivel"></h1>
 
-            <div class="cards-kpi">
-                <div class="card">
+            <div class="cards-kpi" >
+                <div class="card" id="div_sabedoria">
                     <h3>Sabedoria</h3>
+                    
                 </div>
 
-                <div class="card">
+                <div class="card" id="div_coragem">
                     <h3>Coragem</h3>
                 </div>
 
-                <div class="card">
+                <div class="card" id="div_habilidade">
                     <h3>Habilidade</h3>
                 </div>
 
-                <div class="card">
-                    <h3>Compaixão</h3>
+                <div class="card" id="div_conhecimento">
+                    <h3>Conhecimento</h3>
                 </div>
 
-                <div class="card">
-                    <h3>Influência</h3>
+                <div class="card" id="div_conexao">
+                    <h3>Conexão com a Força</h3>
                 </div>
             </div>
         </section>
 
         <section class="resultado">
-            <div class="personagem">
-                <h3>Anakin Skywalker</h3>
-
-                <img src="../assets/imgs/anakin.jpg" alt="">
-
+            <div class="personagem" id="patente">
+            
             </div>
 
             <div class="grafico"><canvas id="myChart"></canvas></div>
         </section>
 
-        <div class="descricao">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione animi inventore recusandae, vero nemo
-                odit sit error illum debitis. Corporis sed nulla eaque magni natus itaque aut nemo quia unde?</p>
+        <div class="descricao_patente" id="descricao">
+            
         </div>
     </main>
+
+
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
@@ -92,6 +91,8 @@
             })
             .then(function (data) {
                 plotarGraficoRadar(data);
+                plotarKPI(data);
+                plotarInformacoes(data)
             })
             .catch(function (err) {
                 console.log(err);
@@ -100,13 +101,33 @@
         // Chamando a função para plotar o gráfico de linha com os dados
     }
 
+    function plotarInformacoes(data){
+            titulo_nivel.innerHTML = `Você está no nível de um: ${data[0].patente_atributo}`;
+            patente.innerHTML += `<h3>Sua patente é ${data[0].patente_atributo}</h3>`;
+            patente.innerHTML += `<img src="${data[0].imagem}" alt="">`;
+
+            descricao.innerHTML += `<p>${data[0].descricao}</p>`;
+        }
+
+
+    function plotarKPI(data) {
+        div_sabedoria.innerHTML += `<br><h1>${data[0].pontos_sabedoria}</h1>`
+        div_coragem.innerHTML += `<br><h1>${data[0].pontos_coragem}</h1>`
+        div_habilidade.innerHTML += `<br><h1>${data[0].pontos_habilidade}</h1>`
+        div_conhecimento.innerHTML += `<br><h1>${data[0].pontos_conhecimento}</h1>`
+        div_conexao.innerHTML += `<br><h1>${data[0].pontos_conexao}</h3>`
+        
+    }
+
     // Função para plotar o gráfico de linha
     function plotarGraficoRadar(data) {
 
         // Separando os rótulos (labels) e os dados dos votos
 
         const atributos = ['Sabedoria', 'Coragem', 'Habilidade', 'Conhecimento', 'Conexão'];
+
         var pontos = [];
+
         console.log(pontos);
 
 
@@ -132,42 +153,18 @@
                     label: 'Atributos', // Nome do conjunto de dados
                     data: pontos, // Dados dos votos
                     backgroundColor: [
-                        '#000', // Cor de fundo das linhas
+                        '#e3a60063', // Cor de fundo das linhas
                     ],
                     borderColor: [
                         '#E3A600', // Cor da borda das linhas
                     ],
                     borderWidth: 2, // Largura da borda das linhas
                     pointBackGroundColor: '#E3A600',
-                    pointBorderColor: '#E3A600'
+                    pointBorderColor: '#E3A600',
+                    borderJoinStyle: '#ffff'
 
                 }]
-            }, angleLines: {
-                display: true, // Garante que as linhas estejam visíveis
-                color: '#E3A600' // Cor: preto semitransparente
             },
-            scales: {
-                r: {
-                    angleLines: { display: true },
-                    suggestedMin: 0,
-                    suggestedMax: 10 // Ajuste para a pontuação máxima
-                }
-            },// 2. LINHAS DA GRADE (CÍRCULOS CONCÊNTRICOS)
-            grid: {
-                color: 'rgba(180, 180, 180, 0.7)' // Cor: cinza mais claro
-            },
-
-            // 3. RÓTULOS DOS PONTOS (Nomes dos eixos)
-            pointLabels: {
-                color: 'rgb(50, 50, 50)' // Cor do texto dos rótulos
-            },
-
-            // 4. RÓTULOS DE VALORES (Ticks)
-            ticks: {
-                color: 'rgb(100, 100, 100)', // Cor do texto dos valores (0, 20, 40...)
-                // 'backdropColor' muda a cor do fundo do valor
-                backdropColor: 'rgba(255, 255, 255, 0.8)'
-            }
         });
 
     }
