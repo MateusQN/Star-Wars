@@ -9,23 +9,21 @@
 </head>
 
 <body>
-     <header class="header">
+    <header class="header">
         <nav>
             <ul>
                 <li><img src="../public/assets/imgs/starwars-removebg-preview.png" alt=""></li>
 
-                <li><a href="">Home</a></li>
-                <li><a href="">Filmes</a></li>
-                <li><a href="">Quiz</a></li>
-                <li><a href="">Perfil</a></li>
-                <li><a href="">Login</a></li>
-                <li><a href="">Cadastro</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="filmes.html">Filmes</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        
+
         <section>
 
         </section>
@@ -33,13 +31,118 @@
         <section class="container1">
             <h2>Sequências Cronológicas</h2>
 
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus et quas quis doloremque officiis reprehenderit vitae eos quasi molestias, fuga consectetur ipsam sapiente nulla maiores labore id quibusdam veniam ex!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus et quas quis doloremque officiis
+                reprehenderit vitae eos quasi molestias, fuga consectetur ipsam sapiente nulla maiores labore id
+                quibusdam veniam ex!</p>
         </section>
 
-        <section>
+        <section class="container2" id="section_filmes">
             
         </section>
     </main>
 </body>
+
+<script>
+    const filmes = [
+  {
+    titulo: 'Ameaça Fantasma',
+    imagem: './assets/filmes/ep1.jpg',
+    dtLancamento: '1999',
+    bilheteria: '1.02 bi',
+    avaliacao: '6,5/10',
+    sinopse: 'A saga começa quando a Federação de Comércio, sob a influência misteriosa de Darth Sidious, impõe um bloqueio ao planeta pacífico Naboo. O Supremo Chanceler Valorum envia dois Cavaleiros Jedi, Qui-Gon Jinn e seu aprendiz Obi-Wan Kenobi, para negociar o fim do conflito. A negociação falha e os Jedi resgatam a Rainha Amidala, fugindo para o planeta deserto de Tatooine. <br><br>Em Tatooine, Qui-Gon descobre Anakin Skywalker, um jovem escravo com uma conexão sem precedentes com a Força. Acreditando que o garoto é o "Escolhido" da profecia que trará equilíbrio à Força, Qui-Gon aposta sua liberdade em uma perigosa corrida de pods. Anakin vence, conquista sua liberdade e deixa sua mãe para trás para ser treinado como Jedi, embora o Conselho Jedi sinta muito medo em seu futuro. <br><br>O grupo retorna a Naboo para enfrentar a invasão. Enquanto a Rainha une forças com os Gungans nativos, Anakin destrói a nave de controle droide acidentalmente. Simultaneamente, os Jedi enfrentam Darth Maul, um Lorde Sith, em um duelo de sabres de luz mortal que resulta na morte de Qui-Gon. Obi-Wan derrota Maul e promete treinar Anakin, cumprindo o último desejo de seu mestre.'
+  },
+  {
+    titulo: 'Ataque dos Clones',
+    imagem: './assets/filmes/ep2.jpg',
+    dtLancamento: '2002',
+    bilheteria: '653 mi',
+    avaliacao: '6,6/10',
+    sinopse: 'Dez anos se passaram e a galáxia está à beira de uma Guerra Civil. Milhares de sistemas solares ameaçam se separar da República Galáctica sob a liderança do Conde Dooku, um ex-Jedi. Após uma tentativa de assassinato contra a senadora Padmé Amidala, o Padawan Anakin Skywalker é designado para protegê-la em Naboo, onde os dois se apaixonam profundamente, desafiando o código Jedi que proíbe o apego. <br><br>Enquanto isso, Obi-Wan Kenobi descobre um exército secreto de clones sendo produzido para a República no planeta Kamino e persegue o caçador de recompensas Jango Fett até Geonosis. Lá, ele descobre que os Separatistas estão construindo um exército droide massivo. Anakin, atormentado por pesadelos sobre sua mãe, retorna a Tatooine apenas para encontrá-la à beira da morte, o que desencadeia sua fúria e o leva a massacrar o Povo da Areia. <br><br>Obi-Wan, Anakin e Padmé são capturados em Geonosis e condenados à morte, mas são salvos pela chegada dos Mestres Jedi e do novo exército de clones liderado por Yoda. As Guerras Clônicas começam oficialmente. Em um duelo final, Anakin e Obi-Wan enfrentam Dooku, mas são derrotados, sendo salvos por Yoda. O filme termina com o casamento secreto de Anakin e Padmé, enquanto a galáxia mergulha na escuridão da guerra.'
+  },
+  {
+    titulo: 'A Vingança dos Sith',
+    imagem: './assets/filmes/ep3.jpg',
+    dtLancamento: '2005',
+    bilheteria: '868 mi',
+    avaliacao: '7,6/10',
+    sinopse: 'A Guerra dos Clones chega ao seu clímax. Obi-Wan Kenobi e Anakin Skywalker resgatam o Supremo Chanceler Palpatine das garras do General Grievous. De volta a Coruscant, Anakin descobre que Padmé está grávida, mas passa a ter visões premonitórias de sua morte no parto. Palpatine, revelando-se como o Lorde Sith Darth Sidious, manipula os medos de Anakin, prometendo-lhe poderes do Lado Sombrio capazes de salvar sua amada. <br><br>Confuso e desesperado, Anakin se volta contra a Ordem Jedi, jurando lealdade a Sidious e tornando-se Darth Vader. O Imperador emite a Ordem 66, forçando os clones a executarem seus generais Jedi por toda a galáxia. Vader lidera um massacre no Templo Jedi, eliminando até mesmo as crianças, enquanto Obi-Wan é forçado a lutar contra seu "irmão" e antigo aprendiz no planeta vulcânico Mustafar. <br><br>Obi-Wan derrota Vader, deixando-o mutilado e queimado à beira da lava. Palpatine resgata Vader e o coloca em sua armadura negra de suporte à vida. Padmé morre após dar à luz os gêmeos Luke e Leia, que são separados e escondidos do pai. A República cai e o Império Galáctico nasce, com Vader e o Imperador observando a construção da Estrela da Morte.'
+  },
+  {
+    titulo: 'Uma Nova Esperança',
+    imagem: './assets/filmes/ep4.jpg',
+    dtLancamento: '1977',
+    bilheteria: '775 mi',
+    avaliacao: '8,6/10',
+    sinopse: 'A galáxia vive um período de guerra civil. Espiões rebeldes roubam os planos da arma definitiva do Império, a Estrela da Morte, uma estação espacial capaz de destruir planetas inteiros. A Princesa Leia esconde os planos no droide R2-D2 antes de ser capturada por Darth Vader. Os droides R2-D2 e C-3PO acabam no planeta deserto de Tatooine, onde são comprados pelo jovem fazendeiro Luke Skywalker. <br><br>Ao limpar os droides, Luke descobre a mensagem de Leia e busca a ajuda de Ben Kenobi, que se revela ser Obi-Wan Kenobi. Obi-Wan conta a Luke sobre seu pai e lhe entrega seu sabre de luz, iniciando seu treinamento na Força. Eles contratam o contrabandista Han Solo e seu copiloto Wookiee, Chewbacca, para transportá-los a Alderaan a bordo da Millennium Falcon. No entanto, descobrem que Alderaan foi destruído pelo Império. <br><br>A Falcon é capturada pela Estrela da Morte. Enquanto Obi-Wan se sacrifica em um duelo contra Vader para permitir a fuga do grupo, Luke e Han resgatam a Princesa. Com os planos em mãos, a Aliança Rebelde analisa a estação e descobre uma falha no reator principal. Em uma batalha espacial climática, Luke, guiado pela voz de Obi-Wan e com a ajuda de última hora de Han Solo, dispara o tiro certeiro que destrói a Estrela da Morte, garantindo uma grande vitória para a Rebelião.'
+  },
+  {
+    titulo: 'O Império Contra-Ataca',
+    imagem: './assets/filmes/ep5.jpg',
+    dtLancamento: '1980',
+    bilheteria: '538 mi',
+    avaliacao: '8,7/10',
+    sinopse: 'Três anos após a destruição da Estrela da Morte, o Império persegue a Aliança Rebelde até os confins da galáxia. As forças imperiais descobrem a base secreta rebelde no planeta gelado Hoth e lançam um ataque devastador com caminhantes AT-AT. Os rebeldes são forçados a evacuar. Han Solo, Leia, Chewbacca e C-3PO fogem na Millennium Falcon, mas são perseguidos incessantemente através de um campo de asteroides. <br><br>Seguindo a instrução do espírito de Obi-Wan, Luke viaja para o misterioso planeta pantanoso de Dagobah. Lá, ele encontra o lendário Mestre Jedi Yoda, que começa a treiná-lo nos caminhos da Força. Luke aprende a controlar seus poderes, mas é atormentado por visões de seus amigos sofrendo. Ignorando os avisos de Yoda e Obi-Wan de que seu treinamento está incompleto, Luke parte para a Cidade das Nuvens para salvá-los. <br><br>Na Cidade das Nuvens, administrada por Lando Calrissian, Darth Vader captura Han e Leia para atrair Luke. Han Solo é congelado em carbonita e entregue ao caçador de recompensas Boba Fett. Luke chega e enfrenta Vader em um duelo feroz. Vader corta a mão de Luke e revela a verdade devastadora: ele não matou o pai de Luke; ele *é* o pai de Luke. Chocado e ferido, Luke escapa por pouco, sendo resgatado por Leia e Lando na Falcon.'
+  },
+  {
+    titulo: 'O Retorno de Jedi',
+    imagem: './assets/filmes/ep6.jpg',
+    dtLancamento: '1983',
+    bilheteria: '475 mi',
+    avaliacao: '8,3/10',
+    sinopse: 'Luke Skywalker retorna a Tatooine para resgatar Han Solo das garras do gângster Jabba, o Hutt. Após uma ousada operação que envolve Leia disfarçada e uma batalha sobre o Grande Poço de Carkoon, o grupo derrota Jabba e se reúne com a frota Rebelde. Luke retorna a Dagobah, onde Yoda confirma que Vader é seu pai antes de morrer e se tornar um com a Força. O espírito de Obi-Wan revela que Leia é a irmã gêmea de Luke. <br><br>A Aliança descobre que o Império está construindo uma segunda Estrela da Morte, protegida por um escudo gerado na lua florestal de Endor. Enquanto a frota rebelde prepara um ataque espacial, Han, Leia e Luke lideram uma equipe de ataque em Endor. Eles se aliam aos nativos Ewoks para combater as tropas imperiais. Sentindo a presença de seu pai, Luke se entrega, acreditando que ainda há bondade em Vader e que ele pode ser trazido de volta para a luz. <br><br>Levado à presença do Imperador Palpatine na Estrela da Morte, Luke é tentado a ceder à raiva. Enquanto a frota rebelde cai em uma armadilha, Luke e Vader duelam novamente. Luke vence, mas se recusa a matar o pai. O Imperador ataca Luke com relâmpagos da Força. Incapaz de ver o filho morrer, Vader se volta contra o mestre, jogando Palpatine no reator e sofrendo ferimentos mortais. Anakin Skywalker morre redimido nos braços de Luke. A Estrela da Morte é destruída e a galáxia celebra a liberdade.'
+  },
+  {
+    titulo: 'O Despertar da Força',
+    imagem: './assets/filmes/ep7.jpg',
+    dtLancamento: '2015',
+    bilheteria: '2.07 bi',
+    avaliacao: '7,8/10',
+    sinopse: 'Trinta anos após a queda do Império, uma nova organização maligna, a Primeira Ordem, surge das cinzas buscando eliminar o último Jedi, Luke Skywalker, que desapareceu misteriosamente. O piloto da Resistência Poe Dameron esconde um mapa com a localização de Luke no droide BB-8 antes de ser capturado por Kylo Ren, um executor do lado sombrio. <br><br>Em Jakku, o stormtrooper desertor Finn encontra Rey, uma sucateira solitária sensitiva à Força. Juntos com BB-8, eles fogem na Millennium Falcon e encontram Han Solo e Chewbacca. Han revela que Kylo Ren é seu filho, Ben Solo, que foi seduzido pelo Lado Sombrio pelo Líder Supremo Snoke, destruindo a nova Ordem Jedi de Luke. Enquanto isso, a Primeira Ordem utiliza a Base Starkiller para destruir o sistema Hosnian, sede da Nova República. <br><br>A Resistência lança um ataque para destruir o oscilador térmico da Base Starkiller. Han Solo tenta confrontar seu filho em uma ponte sobre um abismo, implorando para que ele volte para casa, mas Kylo mata o próprio pai em um ato final de escuridão. Enfurecida e despertando seus poderes, Rey enfrenta Kylo Ren na floresta nevada e o derrota. A base é destruída, e Rey parte com Chewbacca e R2-D2 para encontrar Luke e entregar-lhe seu antigo sabre de luz.'
+  },
+  {
+    titulo: 'Os Últimos Jedi',
+    imagem: './assets/filmes/ep8.jpg',
+    dtLancamento: '2017',
+    bilheteria: '1.33 bi',
+    avaliacao: '6,9/10',
+    sinopse: 'A Resistência está em fuga desesperada, sendo rastreada pela Primeira Ordem através do hiperespaço. Rey encontra Luke Skywalker no planeta Ahch-To, mas o velho mestre está desiludido, acreditando que o legado dos Jedi é o fracasso e que a Ordem deve acabar. Relutantemente, ele concorda em ensinar a Rey três lições, enquanto ela desenvolve uma misteriosa conexão mental com Kylo Ren através da Força. <br><br>Enquanto Finn e a mecânica Rose Tico embarcam em uma missão secreta para desativar o rastreador da nave inimiga, Poe Dameron entra em conflito com a liderança da Vice-Almirante Holdo. Rey, convencida de que pode trazer Ben Solo de volta à luz, se entrega à Primeira Ordem. Kylo Ren mata o Líder Supremo Snoke para salvar Rey, e juntos eles derrotam a Guarda Pretoriana, mas Kylo convida Rey para governar a galáxia ao seu lado, o que ela recusa. <br><br>Na batalha final no planeta de sal Crait, a Resistência está encurralada. Luke Skywalker aparece para enfrentar Kylo Ren e todo o exército da Primeira Ordem sozinho. Revela-se que Luke está apenas projetando sua imagem através da Força de Ahch-To, um esforço que custa sua vida. Seu sacrifício permite que os poucos sobreviventes da Resistência escapem na Millennium Falcon, mantendo viva a centelha da esperança.'
+  },
+  {
+    titulo: 'A Ascensão Skywalker',
+    imagem: './assets/filmes/ep9.jpg',
+    dtLancamento: '2019',
+    bilheteria: '1.07 bi',
+    avaliacao: '6,5/10',
+    sinopse: 'O Imperador Palpatine retorna dos mortos, revelando ter manipulado a Primeira Ordem e Snoke como fantoches. Ele revela a "Frota Final" em Exegol, um planeta oculto dos Sith, capaz de reconquistar a galáxia. Kylo Ren encontra o Imperador e é instruído a matar Rey, que se revela ser neta de Palpatine, parte de uma "Díade na Força" junto com Ben Solo. <br><br>Rey, Finn e Poe lideram uma missão para encontrar o localizador que leva a Exegol. A jornada culmina em um duelo nos destroços da segunda Estrela da Morte, onde Rey fere mortalmente Kylo Ren, mas o cura em seguida. Sentindo a morte de sua mãe, Leia, Ben Solo renuncia ao Lado Sombrio e recupera sua identidade, inspirado por uma visão de seu pai, Han Solo. <br><br>A Resistência e uma frota de cidadãos livres da galáxia atacam Exegol. Rey enfrenta o Imperador, que drena a energia vital dela e de Ben para rejuvenescer. No entanto, invocando a força de todos os Jedi do passado, Rey reflete os raios de Palpatine, destruindo-o definitivamente. Rey morre pelo esforço, mas Ben Solo sacrifica sua própria vida para ressuscitá-la, unindo-se à Força. Rey viaja para Tatooine, enterra os sabres de Luke e Leia, e adota o nome Rey Skywalker.'
+  }
+];
+
+        inserirFilmes();
+
+        function inserirFilmes() {
+            for (let index = 0; index < filmes.length; index++) {
+                var filme = filmes[index]
+
+                section_filmes.innerHTML += `<div class="card-filme">
+                <div>
+                <h2>${filme.titulo}</h2>
+                <img src="${filme.imagem}" alt="">
+
+                <h4>Data de lançamento: ${filme.dtLancamento}</h4>
+                <h4>Bilheteria: ${filme.bilheteria}</h4>
+                <h4>Avaliação: ${filme.avaliacao}</h4>
+            </div>
+
+            <div>
+                <h3>Sinopse</h3>
+
+                <p>${filme.sinopse}</p>
+                
+            </div>
+            </div>`
+            }
+        }
+</script>
 
 </html>
