@@ -162,10 +162,49 @@
                     pointBorderColor: '#E3A600',
                     borderJoinStyle: '#ffff'
 
-                }]
-            },
-        });
+                }]},
 
+                options: {
+    plugins: {
+        legend: {
+            labels: {
+                color: '#fff', // Cor da legenda no topo
+                font: {
+                    size: 16
+                }
+            }
+        }
+    },
+    scales: {
+        r: { // Eixo Radial
+            min: 0,
+            max: 10,
+            
+            // --- CORREÇÃO AQUI ---
+            pointLabels: {
+                color: '#ffffff', // A cor fica AQUI, fora do objeto font
+                font: {
+                    size: 14      // O tamanho fica aqui dentro
+                }
+            },
+            // ---------------------
+
+            ticks: {
+                stepSize: 1,
+                color: '#fff',          // Cor dos números (0, 1, 2...)
+                backdropColor: 'transparent' // Fundo transparente
+            },
+            
+            grid: {
+                color: 'rgba(255, 255, 255, 0.2)' // Sugestão: Linhas da grade brancas (se o fundo for escuro)
+            },
+            angleLines: {
+                color: 'rgba(255, 255, 255, 0.2)' // Sugestão: Linhas dos ângulos brancas
+            }
+        }
+    }
+}
+});
     }
 
 </script>

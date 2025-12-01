@@ -118,7 +118,7 @@ section h1{
 
 .personagem{
     background-color: var(--cor-primaria);
-    width: 25vw;
+    width: 30vw;
     height: 55vh;
     border: solid 4px var(--cor-secundaria);
     color: var(--cor-secundaria);
@@ -126,16 +126,15 @@ section h1{
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 3%;
+    padding: 5%;
 
     
 }
 
 .personagem img{
-    width: 25vw;
-    height: 45vh;
+    width: 70%;
+    height: 80%;
     border: solid 4px var(--cor-secundaria);
-
 }
 
 .grafico{
@@ -156,3 +155,8 @@ section h1{
     color: var(--cor-secundaria);
     font-size: 1rem;
 }
+
+#myChart{
+    color: #fff;
+}
+

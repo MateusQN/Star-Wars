@@ -35,7 +35,7 @@ body{
     display: flex;
     min-height: 100vh;
     font-size: 16px;
-    background-image: url(../public/assets/imgs/fundo.png);
+    background-image: url(../assets/imgs/fundo.png);
     color: var(--cor-secundaria);
     
 }
