@@ -167,7 +167,6 @@ body{
     flex-direction: row;
     background-color: var(--cor-primaria);
     border: solid 5px var(--cor-secundaria);
-
 }
 
 .desenvolvedor h2{
@@ -176,7 +175,7 @@ body{
 }
 
 .desenvolvedor p{
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 500;
 }
 
@@ -184,6 +183,9 @@ body{
     width: 50%;
     padding: 7%;
     padding-right: 0%;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
 }
 
 .foto{
@@ -193,7 +195,7 @@ body{
 }
 
 .foto img{
-  width: 100%;
+  width: 90%;
   border: solid 5px var(--cor-secundaria);
 }
 
@@ -224,7 +226,6 @@ body{
 
 .contatos ul li{
    margin: 0 2%;
-
 }
 
 .contatos a{

@@ -12,36 +12,22 @@
 <body onload="onloadEsconder()">
 
     <header>
-    <div id="header-left">
-        
-      <nav>
-        <ul>
-          <li><a href="./EXEMPLO_QUIZZ.html" class="active">Patente</a></li>
-          <li><a href="./dashboard/cards.html">Quiz</a></li>
-          <li><a href="./index.html">Sair</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-
-    <div id="pontuacaoEJogo">
-        <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
-
-        <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
-            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
-                <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
-                <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
-            </div>
-            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
-                <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
-                    <span id="spanPontuacaoFinal">***</span>
-                </span>
-                <span id="msgFinal" class="width-fit-content">***</span>
-            </div>
+        <div id="header-left">
+            <img src="../public/assets/imgs/starwars-removebg-preview.png" alt="">
+            <nav>
+                    <a href="./dashboard/cards.html" class="active"><button>Patente</button> </a>
+                    <a href="../EXEMPLO_QUIZZ.html"><button>Quiz</button></a>
+                    <a href="./../index.html"><button>Sair</button></a>
+                
+            </nav>
         </div>
+    </header>
 
-        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
+<main>
+    <div id="pontuacaoEJogo">
+        <button id="btnIniciarQuiz" class="btn-iniciar" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+
+        <div id="jogo" class="width-fit-content flex-colunar border-secondary quiz">
 
             <div id="infoQuestao" class="padding-8">
                 <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
@@ -52,10 +38,7 @@
                 <span id="spanQuestaoExibida" class="text-bold"></span>
             </div>
 
-            <div id="infoAlternativas" class="padding-8">
-                <span><em>Escolha uma opção dentre as abaixo:</em></span>
-            </div>
-
+       
             <div id="opcoes" class="flex-colunar padding-8">
                 <span>
                     <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
@@ -76,14 +59,14 @@
             </div>
 
             <div id="botoes" class="flex-colunar padding-8">
-                <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
-                <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
-                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
-                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+                <button onclick="submeter(), avancar()" id="btnSubmeter">Submeter resposta</button>
+                <!-- <button onclick="" id="btnProx" disabled>Avançar para próxima questão</button> -->
+                <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button>
             </div>
 
         </div>
     </div>
+    </main>
 </body>
 
 </html>
@@ -186,12 +169,11 @@
     // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function onloadEsconder() {
-        document.getElementById('pontuacao').style.display = "none"
         document.getElementById('jogo').style.display = "none"
     }
 
     function iniciarQuiz() {
-        document.getElementById('pontuacao').style.display = "flex"
+   
         document.getElementById('jogo').style.display = "flex"
         document.getElementById('btnIniciarQuiz').style.display = "none"
 
@@ -200,7 +182,6 @@
         preencherHTMLcomQuestaoAtual(0)
 
         btnSubmeter.disabled = false
-        btnProx.disabled = true
         // btnConcluir.disabled = true
         btnTentarNovamente.disabled = true
     }
@@ -234,7 +215,6 @@
             alert("Não há alternativas escolhidas. Escolha uma opção.")
         } else {
             btnSubmeter.disabled = true
-            btnProx.disabled = false
 
             habilitarAlternativas(false)
 
@@ -253,7 +233,6 @@
     }
 
     function avancar() {
-        btnProx.disabled = true
         btnSubmeter.disabled = false
 
         desmarcarRadioButtons()
@@ -292,19 +271,16 @@
         // verifica se resposta assinalada é correta
         options.forEach((option) => {
             if (option.checked === true && option.value === respostaQuestaoAtual) {
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
                 pontuacaoFinal++
                 certas++
-                document.getElementById("spanCertas").innerHTML = certas
+            
                 numeroDaQuestaoAtual++
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
                 const wrongLabelId = option.labels[0].id
 
-                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+
                 tentativaIncorreta++
                 erradas++
-                document.getElementById("spanErradas").innerHTML = erradas
                 numeroDaQuestaoAtual++
             }
         })
@@ -326,36 +302,9 @@
     }
 
     function finalizarJogo() {
-        let textoParaMensagemFinal = null
-        let classComCoresParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
-        if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Parece que você não estudou..."
-            classComCoresParaMensagemFinal = "text-danger-with-bg"
-        }
-        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
-            classComCoresParaMensagemFinal = "text-warning-with-bg"
-        }
-        else if (porcentagemFinalDeAcertos >= 0.9) {
-            textoParaMensagemFinal = "Uau, parabéns!"
-            classComCoresParaMensagemFinal = "text-success-with-bg"
-        }
-
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
-
-
-        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
-        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
-
-        document.getElementById('jogo').classList.add("text-new-gray") 
-
-        btnProx.disabled = true
-        btnSubmeter.disabled = true
-        // btnConcluir.disabled = true
-        btnTentarNovamente.disabled = false
+        window.location = "./dashboard/cards.html"
+        
 
 
         fetch("/pontos/cadastrar", {    
