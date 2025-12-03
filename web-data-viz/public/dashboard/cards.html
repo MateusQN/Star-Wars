@@ -35,9 +35,10 @@
     </header>
 
     <main>
+
         <section class="container-kpi">
             <h1 id="titulo_nivel"></h1>
-
+            <h2>Seus Atributos:</h2>
             <div class="cards-kpi" >
                 <div class="card" id="div_sabedoria">
                     <h3>Sabedoria</h3>
@@ -72,9 +73,10 @@
 
         <section class="resultado">
         <div class="descricao_patente" id="descricao">
+            <h2>Descrição:</h2>
         </div>
 
-        <div class="grafico"><canvas id="myChart2"></canvas></div>
+        <div class="grafico"><h3>Sua pontuação:</h3><canvas id="myChart2"></canvas></div>
         </section>
     </main>
 
@@ -104,7 +106,7 @@
     }
 
     function plotarInformacoes(data){
-            titulo_nivel.innerHTML = `Você está no nível de um: ${data[0].patente_atributo}`;
+            titulo_nivel.innerHTML = `Você está no nível de um: ${data[0].patente_atributo}!`;
             patente.innerHTML += `<h3>Sua patente é ${data[0].patente_atributo}</h3>`;
             patente.innerHTML += `<img src="${data[0].imagem}" alt="">`;
 
@@ -208,11 +210,11 @@
 });
 
 var indicadores = [ 'Pontuação Atual','Grão Mestre']
+
 var melhorar = []
 
 
 var falta = 10 - pontuacao;
-
 var grao_mestre = 10 - falta;
 
 melhorar.push(grao_mestre);
@@ -224,24 +226,39 @@ console.log(melhorar);
 
 
 var ctx = document.getElementById('myChart2').getContext('2d');
-  // Criando o gráfico de barra usando o Chart.js
+  
   var myChart = new Chart(ctx, {
-      type: 'doughnut', // Tipo de gráfico: barra
-      data: { // Dados para o gráfico
-          labels: indicadores,// Rótulos no eixo X
+      type: 'doughnut', 
+      data: { 
+          labels: indicadores,
           datasets: [{
-              label: 'Quanto falta para Grão Mestre', // Nome do conjunto de dados
-              data: melhorar, // Dados dos votos
+              labels: 'Pontuação', 
+              data: melhorar,
               backgroundColor: [
                   'green',
-                  'blue', // Cor de fundo das barras
+                  'blue',
               ],
               borderColor: [
-                  'green', // Cor da borda das barras
+                  'green', 
               ],
-              borderWidth: 1 // Largura da borda das barras
+              borderWidth: 1 
           }]
-      },
+      },options: {
+        plugins: {
+            tooltip: {
+                callbacks: {
+
+                    label: function(context) {
+                        
+                        if (context.dataIndex === 0) {
+                            return `Sua pontuação atual ${context.parsed}/10`;
+                        } else {
+                            return `Força! Ainda faltam ${context.parsed}/10 para virar Grão Mestre`;
+                        }
+                    }
+                }
+            }
+        }}
   });
     }
 

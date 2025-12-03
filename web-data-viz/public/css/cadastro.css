@@ -13,7 +13,8 @@
 }
 
 body{
-    background-image: url(../assets/imgs/fundo.png);
+    background-image: url(../assets/imgs/cinematografia1.jpg);
+    background-position: center;
 }
 
 .header{

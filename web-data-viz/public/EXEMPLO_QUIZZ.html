@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo - Quiz</title>
+    <title>Quizz</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./assets/imgs/starwars-removebg-preview.png">
 </head>
@@ -16,7 +16,7 @@
         <div id="header-left">
             <img src="./assets/imgs/starwars-removebg-preview.png" alt="">
             <nav>
-                    <a href="./dashboard/cards.html" class="active"><button>Patente</button> </a>
+                    <a href="./dashboard/cards.html"><button>Patente</button></a>
                     <a href="../EXEMPLO_QUIZZ.html"><button>Quiz</button></a>
                     <a href="./../index.html"><button>Sair</button></a>
                 
@@ -25,6 +25,10 @@
     </header>
 
 <main>
+    <div class="titulo">
+    <h2>Olá <b id="nick"></b>! Faça o Quizz para saber em qual patente da Ordem Jedi você está!</h2>
+    </div>
+
     <div id="pontuacaoEJogo">
         <button id="btnIniciarQuiz" class="btn-iniciar" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
@@ -71,6 +75,11 @@
 
 </html>
 <script>
+
+var nickname = sessionStorage.NOME_USUARIO;
+
+nick.innerHTML = `${nickname}`
+
     const listaDeQuestoes = [
 
 
