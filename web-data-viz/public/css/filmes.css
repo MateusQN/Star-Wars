@@ -119,4 +119,6 @@ body{
     margin: 3% 0%
 }
 
-
+.header a:hover{
+  border-bottom: solid 2px var(--cor-secundaria);
+}

@@ -2,11 +2,11 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/imgs/starwars-removebg-preview.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Tempo Real</title>
+    <title>Dashboard Patente</title>
 
 
     <link rel="stylesheet" href="../css/dasboard1.css">
@@ -70,9 +70,12 @@
             <div class="grafico"><canvas id="myChart"></canvas></div>
         </section>
 
+        <section class="resultado">
         <div class="descricao_patente" id="descricao">
-            
         </div>
+
+        <div class="grafico"><canvas id="myChart2"></canvas></div>
+        </section>
     </main>
 
 
@@ -127,7 +130,8 @@
 
         var pontos = [];
 
-        console.log(pontos);
+        var pontuacao = [];
+
 
 
         // Preenchendo os arrays com os dados
@@ -137,9 +141,8 @@
             pontos.push(data[i].pontos_habilidade);
             pontos.push(data[i].pontos_conhecimento);
             pontos.push(data[i].pontos_conexao);
+            pontuacao.push(data[i].Pontuacao_Usuario);
         }
-
-
 
         // Capturando o elemento canvas pelo id 
         var ctx = document.getElementById('myChart').getContext('2d');
@@ -176,35 +179,70 @@
         }
     },
     scales: {
-        r: { // Eixo Radial
+        r: { 
             min: 0,
             max: 10,
             
-            // --- CORREÇÃO AQUI ---
+           
             pointLabels: {
-                color: '#ffffff', // A cor fica AQUI, fora do objeto font
+                color: '#ffffff', 
                 font: {
-                    size: 14      // O tamanho fica aqui dentro
+                    size: 14      
                 }
             },
-            // ---------------------
-
             ticks: {
                 stepSize: 1,
-                color: '#fff',          // Cor dos números (0, 1, 2...)
-                backdropColor: 'transparent' // Fundo transparente
+                color: '#fff',         
+                backdropColor: 'transparent' 
             },
             
             grid: {
-                color: 'rgba(255, 255, 255, 0.2)' // Sugestão: Linhas da grade brancas (se o fundo for escuro)
+                color: 'rgba(255, 255, 255, 0.2)'
             },
             angleLines: {
-                color: 'rgba(255, 255, 255, 0.2)' // Sugestão: Linhas dos ângulos brancas
+                color: 'rgba(255, 255, 255, 0.2)' 
             }
         }
     }
 }
 });
+
+var indicadores = [ 'Pontuação Atual','Grão Mestre']
+var melhorar = []
+
+
+var falta = 10 - pontuacao;
+
+var grao_mestre = 10 - falta;
+
+melhorar.push(grao_mestre);
+melhorar.push(falta);
+
+console.log(melhorar);
+
+
+
+
+var ctx = document.getElementById('myChart2').getContext('2d');
+  // Criando o gráfico de barra usando o Chart.js
+  var myChart = new Chart(ctx, {
+      type: 'doughnut', // Tipo de gráfico: barra
+      data: { // Dados para o gráfico
+          labels: indicadores,// Rótulos no eixo X
+          datasets: [{
+              label: 'Quanto falta para Grão Mestre', // Nome do conjunto de dados
+              data: melhorar, // Dados dos votos
+              backgroundColor: [
+                  'green',
+                  'blue', // Cor de fundo das barras
+              ],
+              borderColor: [
+                  'green', // Cor da borda das barras
+              ],
+              borderWidth: 1 // Largura da borda das barras
+          }]
+      },
+  });
     }
 
 </script>

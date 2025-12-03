@@ -1,7 +1,6 @@
 :root{
     --cor-primaria: #000;
     --cor-secundaria: #E3A600; 
-    --background: ;
 }
 
 *{
@@ -70,6 +69,7 @@ body{
   width: 40%;
   background-color: var(--cor-primaria);
   border: solid 3px var(--cor-secundaria);
+  border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -98,19 +98,12 @@ body{
 }
 
 .formulario input {
+  color: var(--cor-primaria);
   border: 2px solid var(--cor-secundaria);
   text-align: center;
   margin: 0;
-}
-
-.formulario select {
-  border: 2px solid #32b9cd;
-  background-color: white;
-  color: gray;
-  height: 36px;
-  text-align: center;
-  border-radius: 10px;
-  margin: 0;
+  height: 2rem;
+  border-radius: 15px;
 }
 
 .campo {
@@ -133,4 +126,13 @@ body{
   height: 30px;
   align-self: center;
   margin-top: 20px;
+}
+
+.botao:hover{
+  background-color: var(--cor-secundaria);
+  color: var(--cor-primaria);
+}
+
+.header a:hover{
+  border-bottom: solid 2px var(--cor-secundaria);
 }

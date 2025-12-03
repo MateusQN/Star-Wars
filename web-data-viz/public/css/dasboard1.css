@@ -148,8 +148,8 @@ section h1{
 
 .descricao_patente{
     padding: 5%;
-    width: 90%;
-    height: 10vh;
+    width: 30vw;
+    height: 55vh;
     background-color: var(--cor-primaria);
     border: solid 4px var(--cor-secundaria);
     color: var(--cor-secundaria);
